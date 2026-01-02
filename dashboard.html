@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .subject-btn {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: #2196F3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .subject-btn:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Dashboard</h2>
+  <p id="user"></p>
+
+  <h3>Select Subject to Start Quiz</h3>
+  <button class="subject-btn" onclick="startQuiz('Digital image processing')">Digital image processing</button>
+  <button class="subject-btn" onclick="startQuiz('natural lanuage processing')">natural lanuage processing</button>
+  <button class="subject-btn" onclick="startQuiz('Software Engineering')">Software Engineering</button>
+  <button class="subject-btn" onclick="startQuiz('trendsing computing')">trendsing computing</button>
+
+  <br><br>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+  // Login check
+  let user = localStorage.getItem("loggedUser");
+  if (!user) {
+    window.location.href = "login.html";
+  }
+  document.getElementById("user").innerText = "Welcome, " + user;
+
+  function startQuiz(subject) {
+    // Save selected subject in localStorage
+    localStorage.setItem("quizSubject", subject);
+    // Open quiz page
+    window.location.href = "quiz.html";
+    
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedUser");
+    localStorage.removeItem("quizSubject");
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>
